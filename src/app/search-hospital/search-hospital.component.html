@@ -1,0 +1,15 @@
+<div>
+  <input type="text" [(ngModel)]="specialty" placeholder="Spécialité médicale">
+  <input type="number" [(ngModel)]="latitude" placeholder="Latitude">
+  <input type="number" [(ngModel)]="longitude" placeholder="Longitude">
+  <button (click)="searchHospital()">Rechercher</button>
+</div>
+
+<div *ngIf="hospital">
+  <p>Hôpital le plus proche: {{ hospital.name }}</p>
+  <p>Adresse: {{ hospital }}</p>
+</div>
+
+<div *ngIf="notFound">
+  <p>Aucun hôpital trouvé.</p>
+</div>
