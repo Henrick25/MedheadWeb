@@ -11,10 +11,18 @@ export class SearchHospitalComponent {
   specialty = '';
   latitude!: number;
   longitude!: number;
-  hospital?: Hospital;
+  hospital!: Hospital;
   notFound = false;
 
-  constructor(private hospitalService: HospitalService) {}
+  showReservationForm = false;
+  patientName = '';
+  appointmentDate = '';
+
+  reservationSuccess = false;
+
+  constructor(private hospitalService: HospitalService) {
+    this.getUserLocation();
+  }
 
   searchHospital(): void {
     this.hospitalService
@@ -22,6 +30,7 @@ export class SearchHospitalComponent {
       .subscribe({
         next: (hospital) => {
           this.hospital = hospital;
+          console.log(hospital);
           this.notFound = false;
         },
         error: (error) => {
@@ -29,5 +38,26 @@ export class SearchHospitalComponent {
           this.notFound = true;
         },
       });
+  }
+  submitReservation(): void {
+    const reservationDetails = {
+      hospitalId: this.hospital.id, // Assurez-vous que `hospital` a un `id`
+      patientName: this.patientName,
+      appointmentDate: this.appointmentDate,
+    };
+    console.log('Détails de la réservation:', reservationDetails);
+    this.reservationSuccess = true; // Mise à jour de l'état pour indiquer que la réservation est réussie
+    this.showReservationForm = false;
+  }
+  getUserLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        console.log(position);
+        this.latitude = position.coords.latitude;
+        this.longitude = position.coords.longitude;
+      });
+    } else {
+      console.error('Geolocation is not supported by this browser.');
+    }
   }
 }

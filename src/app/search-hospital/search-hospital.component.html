@@ -1,15 +1,34 @@
 <div>
   <input type="text" [(ngModel)]="specialty" placeholder="Spécialité médicale">
-  <input type="number" [(ngModel)]="latitude" placeholder="Latitude">
-  <input type="number" [(ngModel)]="longitude" placeholder="Longitude">
+
   <button (click)="searchHospital()">Rechercher</button>
 </div>
 
 <div *ngIf="hospital">
   <p>Hôpital le plus proche: {{ hospital.name }}</p>
   <p>Adresse: {{ hospital }}</p>
+  <button *ngIf="!showReservationForm" (click)="showReservationForm = true">Réserver une place</button>
 </div>
 
 <div *ngIf="notFound">
   <p>Aucun hôpital trouvé.</p>
+</div>
+<!-- Formulaire de réservation -->
+<div *ngIf="showReservationForm">
+  <form (ngSubmit)="submitReservation()">
+    <!-- Champs de formulaire pour la réservation -->
+    <div>
+      <label for="patientName">Votre nom:</label>
+      <input type="text" id="patientName" name="patientName" [(ngModel)]="patientName" required>
+    </div>
+    <div>
+      <label for="appointmentDate">Date de rendez-vous:</label>
+      <input type="date" id="appointmentDate" name="appointmentDate" [(ngModel)]="appointmentDate" required>
+    </div>
+    <button type="submit">Envoyer la réservation</button>
+  </form>
+</div>
+
+<div *ngIf="reservationSuccess">
+  <p>Votre réservation est faite.</p>
 </div>

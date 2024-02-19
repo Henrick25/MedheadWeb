@@ -7,7 +7,7 @@ import { SearchHospitalComponent } from './search-hospital/search-hospital.compo
 import { RouterModule } from '@angular/router'; // Importation de RouterModule
 import { AppRoutingModule } from './app-routing.module';
 import { CommonModule } from '@angular/common';
-import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
+import { GoogleMapsModule } from '@angular/google-maps';
 @NgModule({
   declarations: [AppComponent, SearchHospitalComponent],
   imports: [
@@ -15,7 +15,7 @@ import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-    GooglePlaceModule,
+    GoogleMapsModule,
     FormsModule,
     CommonModule,
   ],
