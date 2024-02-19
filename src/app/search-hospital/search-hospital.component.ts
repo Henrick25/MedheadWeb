@@ -12,6 +12,7 @@ export class SearchHospitalComponent {
   latitude!: number;
   longitude!: number;
   hospital!: Hospital;
+  lit!: number;
   notFound = false;
 
   showReservationForm = false;
@@ -47,6 +48,7 @@ export class SearchHospitalComponent {
     };
     console.log('Détails de la réservation:', reservationDetails);
     this.reservationSuccess = true; // Mise à jour de l'état pour indiquer que la réservation est réussie
+    this.lit -= 1;
     this.showReservationForm = false;
   }
   getUserLocation() {

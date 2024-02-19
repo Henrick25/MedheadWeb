@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Hospital } from './models/hospital'; // Assurez-vous de définir l'interface Hospital selon la réponse de l'API
-
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 @Injectable({
   providedIn: 'root',
 })

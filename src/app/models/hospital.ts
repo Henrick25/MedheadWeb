@@ -3,6 +3,6 @@ export interface Hospital {
   name: string;
   latitude: number;
   longitude: number;
-  lit: String;
+  lit: number;
   // Ajoutez d'autres propriétés selon le besoin
 }

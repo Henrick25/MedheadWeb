@@ -1,7 +1,8 @@
-<div>
+<div class="parentBanner"><img class="banner" src="assets/banner.png" alt=""></div>
+<div class="recherche">
   <input type="text" [(ngModel)]="specialty" placeholder="Spécialité médicale">
 
-  <button (click)="searchHospital()">Rechercher</button>
+  <button class="btn" (click)="searchHospital()">Rechercher</button>
 </div>
 
 <div *ngIf="hospital">
