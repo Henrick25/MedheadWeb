@@ -4,5 +4,8 @@ export interface Hospital {
   latitude: number;
   longitude: number;
   lit: number;
+  numeroDeRue: string;
+  postal: string;
+  rue: string;
   // Ajoutez d'autres propriétés selon le besoin
 }

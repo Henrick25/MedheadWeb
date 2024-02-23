@@ -6,13 +6,14 @@
 </div>
 
 <div *ngIf="hospital">
-  <p>Hôpital le plus proche: {{ hospital.name }}</p>
-  <p>Adresse: {{ hospital }}</p>
-  <button *ngIf="!showReservationForm" (click)="showReservationForm = true">Réserver une place</button>
+  <p class="hopitaleAttribut"> Hôpital le plus proche: <span>{{ hospital.name }}</span></p>
+  <p class="hopitaleAttribut">Adresse:<span> {{ hospital.numeroDeRue }} {{ hospital.rue }} {{ hospital.postal }}</span>
+  </p>
+  <button class="btn" *ngIf="!showReservationForm" (click)="showReservationForm = true">Réserver une place</button>
 </div>
 
-<div *ngIf="notFound">
-  <p>Aucun hôpital trouvé.</p>
+<div class="error" *ngIf="notFound">
+  <p>{{erreurSaisi}}</p>
 </div>
 <!-- Formulaire de réservation -->
 <div *ngIf="showReservationForm">

@@ -14,6 +14,7 @@ export class SearchHospitalComponent {
   hospital!: Hospital;
   lit!: number;
   notFound = false;
+  erreurSaisi = '';
 
   showReservationForm = false;
   patientName = '';
@@ -30,9 +31,14 @@ export class SearchHospitalComponent {
       .getNearestHospital(this.specialty, this.latitude, this.longitude)
       .subscribe({
         next: (hospital) => {
-          this.hospital = hospital;
-          console.log(hospital);
-          this.notFound = false;
+          if (hospital) {
+            this.hospital = hospital;
+            console.log(hospital);
+            this.notFound = false;
+          } else {
+            this.erreurSaisi = 'veillier saisir une données valide';
+            this.notFound = true;
+          }
         },
         error: (error) => {
           console.error('Error fetching the hospital:', error);
