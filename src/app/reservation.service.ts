@@ -8,17 +8,11 @@ import { Patient } from './models/patient';
   providedIn: 'root',
 })
 export class ReservationService {
-  private apiUrl = 'https://votre-api.com/api';
+  private apiUrl = '/api/web';
 
   constructor(private http: HttpClient) {}
-  submitReservation(
-    patientDetails: Patient,
-    reservationDetails: Reservation
-  ): Observable<any> {
-    const payload = {
-      patient: patientDetails,
-      reservation: reservationDetails,
-    };
-    return this.http.post(`${this.apiUrl}/reservations`, payload);
+
+  submitReservation(reservationDetails: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/reservation`, reservationDetails);
   }
 }

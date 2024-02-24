@@ -8,7 +8,7 @@ import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 })
 export class HospitalService {
   private apiUrl = '/api/hospitals';
-
+  hospital!: Hospital;
   constructor(private http: HttpClient) {}
 
   getNearestHospital(
@@ -22,5 +22,13 @@ export class HospitalService {
       .set('longitude', longitude.toString());
 
     return this.http.get<Hospital>(this.apiUrl, { params });
+  }
+  getHospitalData(hospitalId?: string): Observable<Hospital> {
+    // Si un ID d'hôpital est fourni, utilisez-le pour obtenir des détails spécifiques
+    // Sinon, retournez les détails de l'hôpital par défaut ou actuellement sélectionné
+    const endpoint = hospitalId
+      ? `${this.apiUrl}/${hospitalId}`
+      : `${this.apiUrl}/current`;
+    return this.http.get<Hospital>(endpoint);
   }
 }

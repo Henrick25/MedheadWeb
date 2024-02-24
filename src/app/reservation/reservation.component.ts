@@ -1,62 +1,55 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  FormControl,
+} from '@angular/forms';
 import { ReservationService } from '../reservation.service';
+import { HospitalService } from '../hospital.service'; // Si vous avez un service pour les hôpitaux
+import { Hospital } from '../models/hospital';
 
 @Component({
   selector: 'app-reservation',
   templateUrl: './reservation.component.html',
   styleUrls: ['./reservation.component.css'],
 })
-export class ReservationComponent implements OnInit {
-  reservationForm!: FormGroup;
+export class ReservationFormComponent {
+  @Input() hospitalId!: number; // Assurez-vous de passer cet ID depuis le composant parent
+  patientName = '';
+  patientPhone!: number;
+  etat = '';
+  mail = '';
+  age!: number;
+  sexe = '';
+  heure = '';
 
-  constructor(
-    private fb: FormBuilder,
-    private reservationService: ReservationService
-  ) {}
-
-  ngOnInit(): void {
-    this.reservationForm = this.fb.group({
-      name: ['', Validators.required],
-      tel: ['', [Validators.required, Validators.minLength(10)]],
-      mail: ['', [Validators.required, Validators.email]],
-      hospitalId: ['', Validators.required],
-      specialty: ['', Validators.required],
-      appointmentDate: ['', Validators.required],
-      status: ['pending', Validators.required],
-      reason: [''], // Optionnel
-    });
-  }
+  constructor(private reservationService: ReservationService) {}
 
   submitReservation(): void {
-    if (this.reservationForm.valid) {
-      const patientDetails = {
-        name: this.reservationForm.value.name,
-        tel: this.reservationForm.value.tel,
-        mail: this.reservationForm.value.mail,
-      };
+    const reservationDetails = {
+      hospitalId: this.hospitalId,
+      patientName: this.patientName,
+      patientPhone: this.patientPhone,
+      etat: this.etat,
+      mail: this.mail,
+      age: this.age,
+      sexe: this.sexe,
+      heure: this.heure,
+      // Ajoutez ici tous les autres champs nécessaires
+    };
 
-      const reservationDetails = {
-        hospitalId: this.reservationForm.value.hospitalId,
-        specialty: this.reservationForm.value.specialty,
-        appointmentDate: this.reservationForm.value.appointmentDate,
-        status: this.reservationForm.value.status,
-        reason: this.reservationForm.value.reason,
-        patientId: this.reservationForm.value.hospitalId,
-      };
-
-      this.reservationService
-        .submitReservation(patientDetails, reservationDetails)
-        .subscribe({
-          next: (response) => {
-            console.log('Réservation réussie:', response);
-            // Gérer la réussite (par exemple, afficher un message de succès)
-          },
-          error: (error) => {
-            console.error('Erreur lors de la réservation:', error);
-            // Gérer l'erreur (par exemple, afficher un message d'erreur)
-          },
-        });
-    }
+    this.reservationService.submitReservation(reservationDetails).subscribe({
+      next: (response) => {
+        console.log('Réservation réussie:', response);
+        console.log(reservationDetails);
+        // Traitez ici le succès de la soumission
+      },
+      error: (error) => {
+        console.error('Erreur lors de la réservation:', error);
+        // Traitez ici les erreurs
+        console.log(reservationDetails);
+      },
+    });
   }
 }

@@ -17,19 +17,9 @@
 </div>
 <!-- Formulaire de réservation -->
 <div *ngIf="showReservationForm">
-  <app-reservation></app-reservation>
-  <form (ngSubmit)="submitReservation()">
-    <!-- Champs de formulaire pour la réservation -->
-    <div>
-      <label for="patientName">Votre nom:</label>
-      <input type="text" id="patientName" name="patientName" [(ngModel)]="patientName" required>
-    </div>
-    <div>
-      <label for="appointmentDate">Date de rendez-vous:</label>
-      <input type="date" id="appointmentDate" name="appointmentDate" [(ngModel)]="appointmentDate" required>
-    </div>
-    <button type="submit">Envoyer la réservation</button>
-  </form>
+  <app-reservation *ngIf="showReservationForm" [hospitalId]="hospital.id"></app-reservation>
+
+
 </div>
 
 <div *ngIf="reservationSuccess">

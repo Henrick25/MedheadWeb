@@ -1,39 +1,32 @@
-<form [formGroup]="reservationForm" (ngSubmit)="submitReservation()">
+<form (ngSubmit)="submitReservation()">
   <div>
-    <label>Nom:</label>
-    <input formControlName="name" type="text">
+    <label for="patientName">Nom du patient :</label>
+    <input type="text" id="patientName" [(ngModel)]="patientName" name="patientName" required>
   </div>
   <div>
-    <label>Téléphone:</label>
-    <input formControlName="tel" type="tel">
+    <label for="patientPhone">Téléphone du patient :</label>
+    <input type="tel" id="patientPhone" [(ngModel)]="patientPhone" name="patientPhone" required>
   </div>
   <div>
-    <label>Email:</label>
-    <input formControlName="mail" type="email">
+    <label for="patientPhone">Adresse mail</label>
+    <input type="email" id="mail" [(ngModel)]="mail" name="mail" required>
   </div>
   <div>
-    <label>ID Hôpital:</label>
-    <input formControlName="hospitalId" type="text">
+    <label for="patientPhone">Age</label>
+    <input type="number" id="age" [(ngModel)]="age" name="age" required>
   </div>
   <div>
-    <label>Spécialité:</label>
-    <input formControlName="specialty" type="text">
+    <label for="patientPhone">Sexe</label>
+    <input type="text" id="sexe" [(ngModel)]="sexe" name="age" required>
   </div>
   <div>
-    <label>Date de Rendez-vous:</label>
-    <input formControlName="appointmentDate" type="date">
+    <label for="patientPhone">Heure d'arrivé estimé</label>
+    <input type="time" id="heure" [(ngModel)]="heure" name="heure" required>
   </div>
   <div>
-    <label>Statut:</label>
-    <select formControlName="status">
-      <option value="pending">En attente</option>
-      <option value="confirmed">Confirmé</option>
-      <option value="cancelled">Annulé</option>
-    </select>
+    <label for="patientPhone">symptômes</label>
+    <input type="text" id="etat" [(ngModel)]="etat" name="etat" required>
   </div>
-  <div>
-    <label>Motif (optionnel):</label>
-    <input formControlName="reason" type="text">
-  </div>
-  <button type="submit" [disabled]="!reservationForm.valid">Soumettre la Réservation</button>
+  <!-- Ajoutez tous les autres champs nécessaires pour la réservation ici -->
+  <button type="submit">Envoyer la réservation</button>
 </form>
