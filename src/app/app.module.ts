@@ -8,8 +8,11 @@ import { RouterModule } from '@angular/router'; // Importation de RouterModule
 import { AppRoutingModule } from './app-routing.module';
 import { CommonModule } from '@angular/common';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { ReservationComponent } from './reservation/reservation.component';
+import { ReactiveFormsModule } from '@angular/forms'; // Importez ReactiveFormsModule
+
 @NgModule({
-  declarations: [AppComponent, SearchHospitalComponent],
+  declarations: [AppComponent, SearchHospitalComponent, ReservationComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -18,6 +21,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
     GoogleMapsModule,
     FormsModule,
     CommonModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

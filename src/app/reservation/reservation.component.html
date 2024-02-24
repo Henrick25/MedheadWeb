@@ -1,0 +1,39 @@
+<form [formGroup]="reservationForm" (ngSubmit)="submitReservation()">
+  <div>
+    <label>Nom:</label>
+    <input formControlName="name" type="text">
+  </div>
+  <div>
+    <label>Téléphone:</label>
+    <input formControlName="tel" type="tel">
+  </div>
+  <div>
+    <label>Email:</label>
+    <input formControlName="mail" type="email">
+  </div>
+  <div>
+    <label>ID Hôpital:</label>
+    <input formControlName="hospitalId" type="text">
+  </div>
+  <div>
+    <label>Spécialité:</label>
+    <input formControlName="specialty" type="text">
+  </div>
+  <div>
+    <label>Date de Rendez-vous:</label>
+    <input formControlName="appointmentDate" type="date">
+  </div>
+  <div>
+    <label>Statut:</label>
+    <select formControlName="status">
+      <option value="pending">En attente</option>
+      <option value="confirmed">Confirmé</option>
+      <option value="cancelled">Annulé</option>
+    </select>
+  </div>
+  <div>
+    <label>Motif (optionnel):</label>
+    <input formControlName="reason" type="text">
+  </div>
+  <button type="submit" [disabled]="!reservationForm.valid">Soumettre la Réservation</button>
+</form>

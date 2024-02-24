@@ -17,6 +17,7 @@
 </div>
 <!-- Formulaire de réservation -->
 <div *ngIf="showReservationForm">
+  <app-reservation></app-reservation>
   <form (ngSubmit)="submitReservation()">
     <!-- Champs de formulaire pour la réservation -->
     <div>
