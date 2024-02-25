@@ -9,13 +9,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { CommonModule } from '@angular/common';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { ReservationFormComponent } from './reservation/reservation.component';
-import { ReactiveFormsModule } from '@angular/forms'; // Importez ReactiveFormsModule
+import { ReactiveFormsModule } from '@angular/forms';
+import { GestionReservationComponent } from './gestion-reservation/gestion-reservation.component'; // Importez ReactiveFormsModule
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchHospitalComponent,
     ReservationFormComponent,
+    GestionReservationComponent,
   ],
   imports: [
     BrowserModule,

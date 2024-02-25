@@ -7,7 +7,7 @@ import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
   providedIn: 'root',
 })
 export class HospitalService {
-  private apiUrl = '/api/hospitals';
+  private apiUrl = '/api/hospital';
   hospital!: Hospital;
   constructor(private http: HttpClient) {}
 
@@ -21,7 +21,7 @@ export class HospitalService {
       .set('latitude', latitude.toString())
       .set('longitude', longitude.toString());
 
-    return this.http.get<Hospital>(this.apiUrl, { params });
+    return this.http.get<Hospital>(`${this.apiUrl}`, { params });
   }
   getHospitalData(hospitalId?: string): Observable<Hospital> {
     // Si un ID d'hôpital est fourni, utilisez-le pour obtenir des détails spécifiques
