@@ -1,7 +1,7 @@
 // reservations.component.ts
 import { Component, OnInit } from '@angular/core';
 import { GestionReservationService } from '../gestion-reservation.service';
-
+import { ChangeDetectorRef } from '@angular/core';
 @Component({
   selector: 'app-gestion-reservation',
   templateUrl: './gestion-reservation.component.html',
@@ -9,13 +9,17 @@ import { GestionReservationService } from '../gestion-reservation.service';
 })
 export class GestionReservationComponent {
   reservations: any[] = [];
-
-  constructor(private gestionReservationService: GestionReservationService) {}
+  index!: number;
+  constructor(
+    private cdr: ChangeDetectorRef,
+    private gestionReservationService: GestionReservationService
+  ) {}
 
   ngOnInit(): void {
     this.gestionReservationService.getAllReservations().subscribe((data) => {
       this.reservations = data;
       console.log(data);
+      this.cdr.detectChanges();
     });
   }
   supprimerReservation(index: number, id: number) {
