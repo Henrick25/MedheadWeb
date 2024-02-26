@@ -13,17 +13,17 @@
         <p class="card-text"><span>symptome: </span>{{reservation.etat}}</p>
         <p class="card-text"><span>Heure d'arrivée: </span>{{reservation.heure}}</p>
 
-        <p *ngIf="!reservation.etatDemande; else demandeTraitee">
+        <div class="flex" *ngIf="!reservation.etatDemande; else demandeTraitee">
           <!-- Afficher le bouton Supprimer seulement si la réservation n'est pas encore traitée -->
-          <button *ngIf="!reservation.etatDemande" (click)="supprimerReservation(i, reservation.id)"
-            class="btn btn-danger">Supprimer</button>
+          <button class="btn position" *ngIf="!reservation.etatDemande"
+            (click)="supprimerReservation(i, reservation.id)">Supprimer</button>
 
           <!-- Afficher le bouton Valider seulement si la réservation n'est pas encore traitée -->
-          <button *ngIf="!reservation.etatDemande" (click)="validerReservation(i, reservation)"
-            class="btn btn-success">Valider</button>
-        </p>
+          <button class="btn" *ngIf="!reservation.etatDemande"
+            (click)="validerReservation(i, reservation)">Valider</button>
+        </div>
         <ng-template #demandeTraitee>
-          <p class="card-text">Demande traitée</p>
+          <p class="card-text confirm">Demande traitée</p>
         </ng-template>
       </div>
     </div>

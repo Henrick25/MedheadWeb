@@ -26,3 +26,25 @@ span {
   width: 200px; /* Ajustez cette largeur pour accommoder le texte le plus long dans vos <span> */
   margin-right: 8px;
 }
+.confirm {
+  background: #7ce6e7;
+  padding: 20px;
+  color: white;
+  width: 26%;
+}
+.btn {
+  background: #5f7b99;
+  padding: 20px;
+  color: white;
+  width: 26%;
+
+  border: none; /* Enlève les bordures */
+
+  cursor: pointer; /* Garde le curseur en pointeur pour le bouton */
+}
+.flex {
+  margin-top: 30px;
+}
+.position {
+  margin-right: 20px;
+}
