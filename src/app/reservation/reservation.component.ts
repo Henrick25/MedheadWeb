@@ -23,6 +23,7 @@ export class ReservationFormComponent {
   age!: number;
   sexe = '';
   heure = '';
+  etat_demande = false;
 
   constructor(private reservationService: ReservationService) {}
 
@@ -36,6 +37,7 @@ export class ReservationFormComponent {
       age: this.age,
       sexe: this.sexe,
       heure: this.heure,
+      etat_demande: this.etat_demande,
       // Ajoutez ici tous les autres champs nécessaires
     };
 
