@@ -14,4 +14,11 @@ export class GestionReservationService {
   getAllReservations(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/list`);
   }
+  supprimerReservation(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${id}`);
+  }
+
+  validerReservation(id: number, reservation: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${id}`, reservation);
+  }
 }
