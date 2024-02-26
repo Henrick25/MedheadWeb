@@ -1,5 +1,19 @@
+<div>
+  <h1>Listes des reservations</h1>
+</div>
 <ul>
   <li *ngFor="let reservation of reservations">
-    {{ reservation.patientName }} - {{ reservation.date }}
+    <div class="card">
+      <div class="card-body">
+        <h2>{{ reservation.patientName }}</h2>
+        <p class="card-text"><span>Age: </span>{{ reservation.age }}</p>
+        <p class="card-text"><span>Numero de telephone: </span>{{reservation.patientPhone}}</p>
+        <p class="card-text"><span>Adresse mail: </span>{{reservation.mail}}</p>
+        <p class="card-text"><span>Sexe: </span>{{reservation.sexe}}</p>
+        <p class="card-text"><span>symptome: </span>{{reservation.etat}}</p>
+        <p class="card-text"><span>Heure d'arrivée: </span>{{reservation.heure}}</p>
+      </div>
+    </div>
+
   </li>
 </ul>
