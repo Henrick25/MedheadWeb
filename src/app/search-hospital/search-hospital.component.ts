@@ -11,7 +11,7 @@ export class SearchHospitalComponent {
   specialty = '';
   latitude!: number;
   longitude!: number;
-  hospital!: Hospital;
+  hospital: Hospital | null = null;
   lit!: number;
   notFound = false;
   erreurSaisi = '';
@@ -27,6 +27,9 @@ export class SearchHospitalComponent {
   }
 
   searchHospital(): void {
+    this.hospital = null;
+    this.notFound = false;
+    this.erreurSaisi = '';
     this.hospitalService
       .getNearestHospital(this.specialty, this.latitude, this.longitude)
       .subscribe({
@@ -36,26 +39,35 @@ export class SearchHospitalComponent {
             console.log(hospital);
             this.notFound = false;
           } else {
-            this.erreurSaisi = 'veillier saisir une données valide';
+            this.erreurSaisi =
+              'Aucun hôpital trouvé. Veuillez essayer avec d’autres critères.';
             this.notFound = true;
           }
         },
         error: (error) => {
           console.error('Error fetching the hospital:', error);
           this.notFound = true;
+          this.erreurSaisi = error.error
+            ? error.error
+            : "Les urgences sont saturées, il n'y a actuellement plus de place disponible pour cette spécialité. Veuillez réitérer votre demande d'ici 30 minutes.";
         },
       });
   }
   submitReservation(): void {
-    const reservationDetails = {
-      hospitalId: this.hospital.id, // Assurez-vous que `hospital` a un `id`
-      patientName: this.patientName,
-      appointmentDate: this.appointmentDate,
-    };
-    console.log('Détails de la réservation:', reservationDetails);
-    this.reservationSuccess = true; // Mise à jour de l'état pour indiquer que la réservation est réussie
-    this.lit -= 1;
-    this.showReservationForm = false;
+    if (this.hospital) {
+      const reservationDetails = {
+        hospitalId: this.hospital.id, // Assurez-vous que `hospital` a un `id`
+        patientName: this.patientName,
+        appointmentDate: this.appointmentDate,
+      };
+
+      console.log('Détails de la réservation:', reservationDetails);
+      this.reservationSuccess = true; // Mise à jour de l'état pour indiquer que la réservation est réussie
+      this.lit -= 1;
+      this.showReservationForm = false;
+    } else {
+      console.error('Aucun hôpital sélectionné pour la réservation');
+    }
   }
   getUserLocation() {
     if (navigator.geolocation) {
