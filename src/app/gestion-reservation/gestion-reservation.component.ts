@@ -32,8 +32,8 @@ export class GestionReservationComponent {
 
   validerReservation(index: number, reservation: any) {
     // Marquer la réservation comme traitée et préparer les données à envoyer
-    reservation.etatDemande = true;
-    const reservationTraitee = { ...reservation, etatDemande: true };
+    reservation.etat_demande = true;
+    const reservationTraitee = { ...reservation, etat_demande: true };
 
     // Appeler le service pour envoyer la réservation traitée au backend
     this.gestionReservationService
@@ -42,6 +42,7 @@ export class GestionReservationComponent {
         // Mise à jour de l'interface si nécessaire
         // Par exemple, enlever le bouton Supprimer ou afficher "Réservation traitée"
         this.reservations[index] = reservationTraitee;
+        this.cdr.detectChanges();
       });
   }
 }
