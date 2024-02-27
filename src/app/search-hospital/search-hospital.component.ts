@@ -68,4 +68,10 @@ export class SearchHospitalComponent {
       console.error('Geolocation is not supported by this browser.');
     }
   }
+  handleReservationMade(success: boolean): void {
+    if (success) {
+      this.showReservationForm = false;
+      // Vous pouvez également réinitialiser d'autres états au besoin
+    }
+  }
 }

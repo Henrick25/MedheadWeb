@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -15,6 +15,7 @@ import { Hospital } from '../models/hospital';
   styleUrls: ['./reservation.component.css'],
 })
 export class ReservationFormComponent {
+  @Output() reservationMade = new EventEmitter<boolean>();
   @Input() hospitalId!: number; // Assurez-vous de passer cet ID depuis le composant parent
   patientName = '';
   patientPhone!: number;
@@ -45,6 +46,7 @@ export class ReservationFormComponent {
       next: (response) => {
         console.log('Réservation réussie:', response);
         console.log(reservationDetails);
+        this.reservationMade.emit(true);
         // Traitez ici le succès de la soumission
       },
       error: (error) => {

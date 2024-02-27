@@ -17,7 +17,8 @@
 </div>
 <!-- Formulaire de réservation -->
 <div *ngIf="showReservationForm">
-  <app-reservation *ngIf="showReservationForm" [hospitalId]="hospital.id"></app-reservation>
+  <app-reservation *ngIf="showReservationForm" [hospitalId]="hospital.id"
+    (reservationMade)="handleReservationMade($event)"></app-reservation>
 
 
 </div>
