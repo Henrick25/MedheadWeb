@@ -7,7 +7,7 @@ import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
   providedIn: 'root',
 })
 export class HospitalService {
-  private apiUrl = '/api/hospital';
+  public apiUrl = '/api/hospital';
   hospital!: Hospital;
   constructor(private http: HttpClient) {}
 

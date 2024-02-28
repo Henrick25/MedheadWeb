@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class GestionReservationService {
-  private apiUrl = '/api/reservations';
+  public apiUrl = '/api/reservations';
 
   constructor(private http: HttpClient) {}
 
